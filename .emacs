@@ -17,6 +17,8 @@
       "this.props.")
 (fset 'consolelog
       (kbd "c o n s o l e . l o g ( ) ; <left><left>"))
+(fset 'consolelogor
+      (kbd "c o n s o l e . l o g ( ) | | <left><left><left>"))
 (fset 'duplicateline
       (kbd "C-a C-k C-y <return> C-y"))
 (fset 'openbrace
@@ -41,6 +43,11 @@
 (fset 'del-function (kbd "<delete>"))
 (fset 'del-word (kbd "C-<delete>"))
 (fset 'home-function (kbd "<home>"))
+(fset 'tall-buffer (kbd "C-x ^"))
+(fset 'short-buffer (kbd "C-- C-x ^"))
+
+(global-set-key (kbd "C-\"") 'tall-buffer)
+(global-set-key (kbd "C-'") 'short-buffer)
 
 ;; todo: save point and return to it!
 (fset 'tab-entire-file (kbd "M-< S-M-> <tab> M-<"))
@@ -56,6 +63,7 @@
 (global-set-key (kbd "<C-S-return>") 'duplicateline)
 (global-set-key (kbd "C-$") 'reactprops)
 (global-set-key (kbd "<C-tab>") 'consolelog)
+(global-set-key (kbd "<C-iso-lefttab>") 'consolelogor)
 (global-set-key (kbd "C-{") 'openbrace)
 (global-set-key (kbd "C-<") 'htmlcomment)
 (global-set-key (kbd "C-!") 'htmlcommenton)
@@ -120,6 +128,7 @@
 	("css" . "\\.scss\\'")
         ("html" . "\\.html\\.tpl\\'")
         ("jsx" . "code")
+        ("jsx" . "almog")
         ("jsx" . "work")
         ("jsx" . "\\.jsx\\'")
         )
