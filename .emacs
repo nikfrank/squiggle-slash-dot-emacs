@@ -3,7 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages (quote (solidity-mode rust-mode web-mode)))
+ '(python-guess-indent nil)
+ '(python-indent 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -13,6 +15,8 @@
 (tool-bar-mode -1)
 (fset 'jsfunc
       (kbd "( ) = > { } <left> RET RET <tab> <up> <tab> <up> <end> <left> <left> <left> <left>"))
+(fset `jsfunccomponent
+      (kbd "( ) = > ( ) ; <left> <left> RET RET <tab> <up> <tab> <up> <end> <left> <left> <left> <left>"))
 (fset 'reactprops
       "this.props.")
 (fset 'consolelog
@@ -20,7 +24,7 @@
 (fset 'consolelogor
       (kbd "c o n s o l e . l o g ( ) | | <left><left><left>"))
 (fset 'duplicateline
-      (kbd "C-a C-k C-y <return> C-y"))
+      (kbd "C-a C-k C-y <return> C-y <tab>"))
 (fset 'openbrace
       (kbd "{ RET <tab> <end> RET } <tab> <up> <tab>"))
 (fset 'htmlcomment
@@ -59,7 +63,8 @@
 (global-set-key (kbd "§") 'del-function)
 (global-set-key (kbd "C-§") 'del-word)
 
-(global-set-key (kbd "C-F") 'jsfunc)
+(global-set-key (kbd "C-f") 'jsfunc)
+(global-set-key (kbd "C-x C-M-f") 'jsfunccomponent)
 (global-set-key (kbd "<C-S-return>") 'duplicateline)
 (global-set-key (kbd "C-$") 'reactprops)
 (global-set-key (kbd "<C-tab>") 'consolelog)
@@ -103,7 +108,9 @@
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  ;;  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  ;; (package-refresh-contents)
   )
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -162,9 +169,7 @@
 
 (setq markdown-command "pandoc")
 
-(custom-set-variables
- '(python-guess-indent nil)
- '(python-indent 2))
+
 
 
 (setq-default indent-tabs-mode nil)
@@ -176,3 +181,15 @@
   (exec-path-from-shell-initialize))
 
 (setq ns-function-modifier 'control)
+
+(require `togetherly)
+
+(menu-bar-mode -1)
+
+(set-face-attribute 'region nil :background "#ffa290")
+
+(setq create-lockfiles nil)
+
+(require `rust-mode)
+
+(require 'solidity-mode)
